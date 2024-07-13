@@ -1,0 +1,64 @@
+<div class="container">
+  <h1>Situação dos Alunos</h1>
+  <form (ngSubmit)="adicionarAluno()">
+    <div>
+      <label for="nome">Nome:</label>
+      <input
+        type="text"
+        id="nome"
+        [(ngModel)]="novoAluno.nome"
+        name="nome"
+        required
+      />
+    </div>
+    <div>
+      <label for="nota1">1ª Nota:</label>
+      <input
+        type="number"
+        id="nota1"
+        [(ngModel)]="novoAluno.nota1"
+        name="nota1"
+        required
+        min="0"
+        required
+        max="10"
+      />
+    </div>
+    <div>
+      <label for="nota2">2ª Nota:</label>
+      <input
+        type="number"
+        id="nota2"
+        [(ngModel)]="novoAluno.nota2"
+        name="nota2"
+        required
+        min="0"
+        required
+        max="10"
+      />
+    </div>
+    <button type="submit">Adicionar Aluno</button>
+  </form>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Média</th>
+        <th>Condição</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let aluno of alunos">
+        <td>{{ aluno.nome }}</td>
+        <td>{{ calcularMedia(aluno) }}</td>
+        <td>{{ calcularCondicao(aluno) }}</td>
+        <td>
+          <button (click)="editarAluno(aluno)">Editar</button>
+          <button (click)="removerAluno(aluno)">Excluir</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
